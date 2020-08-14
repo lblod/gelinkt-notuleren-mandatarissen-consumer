@@ -1,0 +1,21 @@
+{
+  "name": "gelinkt-notuleren-mandatarissen-consumer",
+  "version": "0.0.0",
+  "description": "Microservice to ingest diff files about mandatees in the database",
+  "dependencies": {
+    "@lblod/mu-auth-sudo": "^0.2.0",
+    "fs-extra": "^8.0.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lblod/gelinkt-notuleren-mandatarissen-consumer.git"
+  },
+  "author": "redpencil.io",
+  "license": "MIT"
+}
