@@ -7,6 +7,7 @@ const DOWNLOAD_FILE_ENDPOINT = `${SYNC_BASE_URL}${DOWNLOAD_FILE_PATH}`;
 const BATCH_SIZE = parseInt(process.env.BATCH_SIZE) || 100;
 
 const PUBLIC_GRAPH = process.env.PUBLIC_GRAPH || 'http://mu.semte.ch/graphs/public';
+const TMP_INGEST_GRAPH = process.env.TMP_INGEST_GRAPH || 'http://mu.semte.ch/graphs/tmp-ingest-gelinkt-notuleren-mandatarissen-consumer';
 
 export {
   INGEST_INTERVAL,
@@ -14,5 +15,6 @@ export {
   SYNC_FILES_ENDPOINT,
   DOWNLOAD_FILE_ENDPOINT,
   BATCH_SIZE,
-  PUBLIC_GRAPH
+  PUBLIC_GRAPH,
+  TMP_INGEST_GRAPH
 }
