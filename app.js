@@ -16,9 +16,11 @@ import { waitForDatabase } from './lib/database-utils';
 */
 
 async function triggerIngest() {
-  console.log(`Executing scheduled function at ${new Date().toISOString()}`);
-  requestPromise.post('http://localhost/ingest/');
-  setTimeout( triggerIngest, INGEST_INTERVAL );
+  if (INGEST_INTERVAL > 0) {
+    console.log(`Executing scheduled function at ${new Date().toISOString()}`);
+    requestPromise.post('http://localhost/ingest/');
+    setTimeout( triggerIngest, INGEST_INTERVAL );
+  }
 }
 
 waitForDatabase(async () => {
