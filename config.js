@@ -1,4 +1,4 @@
-const INGEST_INTERVAL = process.env.INGEST_INTERVAL_MS || -1;
+const INGEST_INTERVAL = process.env.INGEST_INTERVAL || -1;
 const SYNC_BASE_URL = process.env.SYNC_BASE_URL || 'https://mandaten.lblod.info';
 const SYNC_FILES_PATH = process.env.SYNC_FILES_PATH || '/sync/mandatarissen/files';
 const SYNC_FILES_ENDPOINT = `${SYNC_BASE_URL}${SYNC_FILES_PATH}`;
