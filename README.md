@@ -23,7 +23,7 @@ The following environment variables are required:
 The following environment variables are optional:
 * `SYNC_FILES_PATH (default: /sync/mandatarissen/files)`: relative path to the endpoint to retrieve names of the diff files from
 * `DOWNLOAD_FILES_PATH (default: /files/:id/download)`: relative path to the endpoint to download a diff file from. `:id` will be replaced with the uuid of the file.
-* `INGEST_INTERVAL (in ms, default: 60000)`: interval at which the consumer needs to sync data
+* `INGEST_INTERVAL (in ms, default: -1)`: interval at which the consumer needs to sync data automatically. If negative, sync can only be triggered manually via the API endpoint.
 * `START_FROM_DELTA_TIMESTAMP (ISO datetime, default: now)`: timestamp to start sync data from (e.g. "2020-07-05T13:57:36.344Z")
 * `PUBLIC_GRAPH (default: http://mu.semte.ch/graphs/public)`: public graph in which all public data and sync tasks will be ingested
 * `TMP_INGEST_GRAPH (default: http://mu.semte.ch/graphs/tmp-ingest-gelinkt-notuleren-mandatarissen-consumer)`: temporary graph in which all insert changesets are ingested before they're moved to the appropriate graphs according to the authorization rules.
@@ -70,7 +70,7 @@ Ingest the changeset in a temporary graph `TMP_INGEST_GRAPH`. Data cannot be ing
 **Delete changeset**
 Apply a delete query triple per triple across all graphs (including the temporary graph)
 
-At the end of each diff file processing, queries are executed to move data from the temporary graph to the appropriate graphs based on the `rdf:type` and authorization rules.
+At the end of each diff file processing, queries are executed to move data from the temporary graph to the appropriate graphs based on the `rdf:type` and authorization rules. This movement operation (`./lib/delta-file/moveTriplesFromTmpGraph()`) contains the most important part of the consumer service. If the application's authorization rules change, this function needs to be revisited.
 
 If one file fails to be ingested, the remaining files in the queue are blocked since the files must always be handled in order.
 
